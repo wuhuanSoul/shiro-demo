@@ -4,11 +4,11 @@ import org.apache.shiro.authc.*;
 import org.apache.shiro.realm.Realm;
 
 /**
- * Created by wh on 9/27/2017.
+ * Created by wh on 9/28/2017.
  */
-public class MyRealm1 implements Realm {
+public class MyRealm2 implements Realm {
     public String getName() {
-        return "MyRealm1";
+        return "MyRealm2";
     }
 
     public boolean supports(AuthenticationToken authenticationToken) {
@@ -18,13 +18,13 @@ public class MyRealm1 implements Realm {
     public AuthenticationInfo getAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String username = (String) authenticationToken.getPrincipal();
         String password = new String((char[])authenticationToken.getCredentials());
-        if(!"tom".equals(username)) {
-            System.out.println("MyRealm1=========用户名错误========");
-            throw new UnknownAccountException(); //如果用户名错误
+        if(!"james".equals(username)){
+            System.out.println("MyRealm2=========用户名错误========");
+            throw new UnknownAccountException();
         }
-        if(!"123".equals(password)) {
-            System.out.println("MyRealm1=========密码错误========");
-            throw new IncorrectCredentialsException(); //如果密码错误
+        if(!"456".equals(password)){
+            System.out.println("MyRealm2=========密码错误========");
+            throw new IncorrectCredentialsException();
         }
         return new SimpleAuthenticationInfo(username, password, getName());
     }

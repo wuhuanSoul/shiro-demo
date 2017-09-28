@@ -21,7 +21,7 @@ public class TestShiro {
         SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("tom", "123");
+        UsernamePasswordToken token = new UsernamePasswordToken("cat", "123");
         try {
             subject.login(token);
             System.out.println("登录成功");
@@ -39,7 +39,7 @@ public class TestShiro {
         SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("tom", "123");
+        UsernamePasswordToken token = new UsernamePasswordToken("james", "456");
         try {
             subject.login(token);
             System.out.println("==========登录成功==========");
