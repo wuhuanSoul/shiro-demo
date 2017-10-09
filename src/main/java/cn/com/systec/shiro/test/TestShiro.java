@@ -51,5 +51,24 @@ public class TestShiro {
         subject.logout();
     }
 
+    @Test
+    public void jdbcRealmsTest(){
+        Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shiro-jdbc-realm.ini");
+        SecurityManager securityManager = factory.getInstance();
+        SecurityUtils.setSecurityManager(securityManager);
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken("lisi","456");
+        try {
+            subject.login(token);
+            System.out.println("==========登录成功==========");
+        }catch (AuthenticationException e){
+            System.out.println("=============用户登录验证失败==========");
+            e.printStackTrace();
+        }
+        Assert.assertEquals(true, subject.isAuthenticated());
+        subject.logout();
+
+    }
+
 
 }
