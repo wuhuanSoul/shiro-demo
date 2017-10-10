@@ -21,10 +21,17 @@ public class TestShiro {
         SecurityManager securityManager = factory.getInstance();
         SecurityUtils.setSecurityManager(securityManager);
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("cat", "123");
+        UsernamePasswordToken token = new UsernamePasswordToken("tom", "123");
         try {
             subject.login(token);
             System.out.println("登录成功");
+            if(subject.hasRole("admin")){
+                System.out.println("=======有权限=======");
+            }else {
+                System.out.println("=======无权限======");
+            }
+            System.out.println("=======检查有无 create 权限========");
+            subject.checkPermission("user:create");
         }catch (AuthenticationException e){
             System.out.println("================用户登录验证失败=======");
             e.printStackTrace();
